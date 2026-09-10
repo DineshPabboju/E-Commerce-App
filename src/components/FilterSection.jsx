@@ -2,34 +2,50 @@ import React from 'react'
 import { getData } from '../context/DataContext'
 
 const FilterSection = ({search, setSearch, brand, setBrand, priceRange, setPriceRange, category, setCategory, handleBrandChange, handleCategoryChange}) => {
-    const { categoryOnlyData,brandOnlyData } = getData()
+    const { categoryOnlyData, brandOnlyData } = getData()
     return (
-        <div className='bg-gray-100 mt-10 p-4 rounded-md h-max hidden md:block'>
-            <input type="text" 
-            placeholder='Search..' 
-            value={search}
-            onChange={(e)=>setSearch(e.target.value)} 
-            className='bg-white p-2 rounded-md border-gray-400 border-2' 
-            />
+        <div className='bg-white border border-purple-100/90 rounded-2xl p-5 shadow-[0_2px_15px_rgba(124,58,237,0.03)] h-max hidden md:block w-64 flex-shrink-0'>
+            <div className='mb-2'>
+                <label className='block text-xs font-bold uppercase tracking-wider text-slate-900 mb-2'>Search</label>
+                <input 
+                    type="text" 
+                    placeholder='Search products...' 
+                    value={search}
+                    onChange={(e)=>setSearch(e.target.value)} 
+                    className='w-full bg-purple-50/40 border border-purple-200 rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all' 
+                />
+            </div>
 
             {/* category only data */}
-            <h1 className='mt-5 font-semibold text-xl'>Category</h1>
-            <div className='flex flex-col gap-2 mt-3'>
+            <h3 className='mt-5 font-bold text-xs uppercase tracking-wider text-slate-900'>Category</h3>
+            <div className='flex flex-col gap-2 mt-2.5 max-h-48 overflow-y-auto pr-1'>
                 {
                     categoryOnlyData?.map((item, index) => {
-                        return <div key={index} className='flex gap-2'>
-                            <input type="checkbox" name={item} checked={category === item} value={item} onChange={handleCategoryChange}/>
-                            <button className='cursor-pointer uppercase'>{item}</button>
-                        </div>
+                        return (
+                            <label key={index} className='flex items-center gap-2 cursor-pointer group'>
+                                <input 
+                                    type="checkbox" 
+                                    name={item} 
+                                    checked={category === item} 
+                                    value={item} 
+                                    onChange={handleCategoryChange}
+                                    className='accent-purple-600 rounded cursor-pointer h-3.5 w-3.5'
+                                />
+                                <span className={`text-xs capitalize transition-colors ${category === item ? 'text-purple-700 font-semibold' : 'text-slate-600 group-hover:text-purple-600'}`}>
+                                    {item}
+                                </span>
+                            </label>
+                        )
                     })
                 }
             </div>
+
             {/* brand only data */}
-            <h1 className='mt-5 font-semibold text-xl mb-3'>Brand</h1>
-             <select name="" id="" 
-             className='bg-white w-full p-2 border-gray-200 border-2 rounded-md ' 
-             value={brand}
-             onChange={handleBrandChange}
+            <h3 className='mt-5 font-bold text-xs uppercase tracking-wider text-slate-900 mb-2'>Brand</h3>
+             <select 
+                 className='w-full bg-purple-50/40 border border-purple-200 rounded-xl p-2 text-xs text-slate-800 focus:outline-none focus:border-purple-500' 
+                 value={brand}
+                 onChange={handleBrandChange}
              >
                 {
                     brandOnlyData?.map((item, index)=>{
@@ -39,15 +55,28 @@ const FilterSection = ({search, setSearch, brand, setBrand, priceRange, setPrice
              </select>
 
              {/* price range  */}
-             <h1 className='mt-5 font-semibold text-xl mb-3'>Price Range</h1>
+             <h3 className='mt-5 font-bold text-xs uppercase tracking-wider text-slate-900 mb-2'>Price Range</h3>
              <div className='flex flex-col gap-2'>
-                <label htmlFor="">Price Range: ${priceRange[0]} - ${priceRange[1]}</label>
-                <input type="range" min="0" max="5000" name="" id="" value={priceRange[1]} onChange={(e)=>setPriceRange([priceRange[0], Number(e.target.value)])} className='transition-all'/>
+                <div className='flex justify-between text-xs text-slate-600 font-medium'>
+                    <span>${priceRange[0]}</span>
+                    <span className='text-purple-700 font-semibold'>${priceRange[1]}</span>
+                </div>
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="5000" 
+                    value={priceRange[1]} 
+                    onChange={(e)=>setPriceRange([priceRange[0], Number(e.target.value)])} 
+                    className='accent-purple-600 cursor-pointer w-full'
+                />
              </div>
-             <button className='bg-red-500 text-white rounded-md px-3 py-1 mt-5 cursor-pointer'
-             onClick={()=>{setSearch(''); setCategory('All'); setBrand('All'); setPriceRange([0,5000])}}
-             >Reset Filters</button>
 
+             <button 
+                 className='w-full bg-purple-50 hover:bg-purple-600 text-purple-700 hover:text-white border border-purple-200 rounded-xl px-3 py-2 text-xs font-semibold transition-all mt-6 cursor-pointer shadow-2xs'
+                 onClick={()=>{setSearch(''); setCategory('All'); setBrand('All'); setPriceRange([0,5000])}}
+             >
+                 Reset Filters
+             </button>
         </div>
     )
 }

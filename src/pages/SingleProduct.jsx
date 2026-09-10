@@ -33,30 +33,48 @@ const SingleProduct = () => {
     return (
         <>
             {
-                SingleProduct ? <div className='px-4 pb-4 md:px-0'>
+                SingleProduct ? <div className='px-4 pb-16 md:px-0 bg-white min-h-screen'>
                      <Breadcrums title={SingleProduct.title}/>
-                     <div className='max-w-6xl mx-auto md:p-6 grid grid-cols-1 md:grid-cols-2 gap-10'>
+                     <div className='max-w-6xl mx-auto md:p-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-start'>
                         {/* product image */}
-                        <div className='w-full'>
+                        <div className='w-full bg-purple-50/20 border border-purple-100 rounded-3xl p-8 flex items-center justify-center shadow-xs'>
                             <img src={SingleProduct.image} 
                             alt={SingleProduct.title} 
-                            className='rounded-2xl w-full object-cover'/>
+                            className='max-h-[380px] w-auto object-contain hover:scale-105 transition-transform duration-300'/>
                         </div>
                         {/* product details */}
-                        <div className='flex flex-col gap-6'>
-                            <h1 className='md:text-3xl text-xl font-bold text-gray-800'>{SingleProduct.title}</h1>
-                            <div className='text-gray-700'>{SingleProduct.brand?.toUpperCase()} /{SingleProduct.category?.toUpperCase()} /{SingleProduct.model}</div>
-                            <p className='text-xl text-red-500 font-bold'>${SingleProduct.price} <span className='line-through text-gray-700'>${OriginalPrice}</span> <span className='bg-red-500 text-white px-4 py-2 rounded-full'>{SingleProduct.discount}% discount</span></p>
-                            <p className='text-gray-600'>{SingleProduct.description}</p>
-
-                            {/* qunatity selector */}
-                            <div className='flex items-center gap-4'>
-                                <label htmlFor="" className='text-sm font-medium text-gray-700'>Quantity:</label>
-                                <input type="number" min={1} value={1} className='w-20 border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 foucs:ring-red-500'/>
+                        <div className='flex flex-col gap-5'>
+                            {SingleProduct.category && (
+                                <div>
+                                    <span className='inline-block text-xs font-semibold uppercase tracking-wider text-purple-700 bg-purple-50 border border-purple-200 px-3 py-1 rounded-full'>
+                                        {SingleProduct.category}
+                                    </span>
+                                </div>
+                            )}
+                            <h1 className='text-2xl md:text-3xl font-bold text-slate-900 leading-snug'>{SingleProduct.title}</h1>
+                            
+                            <div className='flex items-baseline gap-3'>
+                                <span className='text-3xl font-bold text-slate-900'>${SingleProduct.price}</span>
+                                {OriginalPrice ? <span className='line-through text-slate-400 text-base'>${OriginalPrice}</span> : null}
+                                {SingleProduct.discount ? (
+                                    <span className='text-xs font-bold text-purple-700 bg-purple-100/80 px-3 py-1 rounded-full'>
+                                        {SingleProduct.discount}% OFF
+                                    </span>
+                                ) : null}
                             </div>
 
-                            <div className='flex gap-4 mt-4'>
-                                <button onClick={()=>addToCart(SingleProduct)} className='px-6 flex gap-2 py-2 text-lg bg-red-500 text-white rounded-md'><IoCartOutline className='w-6 h-6'/> Add to Cart</button>
+                            <p className='text-slate-600 text-sm leading-relaxed border-t border-b border-purple-50 py-4'>{SingleProduct.description}</p>
+
+                            {/* quantity selector */}
+                            <div className='flex items-center gap-3'>
+                                <label className='text-xs font-semibold uppercase tracking-wider text-slate-700'>Quantity</label>
+                                <input type="number" min={1} defaultValue={1} className='w-20 bg-purple-50/30 border border-purple-200 rounded-xl px-3 py-1.5 text-sm text-slate-800 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500'/>
+                            </div>
+
+                            <div className='flex gap-4 pt-2'>
+                                <button onClick={()=>addToCart(SingleProduct)} className='px-8 py-3 bg-purple-600 hover:bg-purple-700 active:scale-[0.98] text-white rounded-xl font-medium flex items-center gap-2 shadow-sm hover:shadow-purple-500/25 transition-all cursor-pointer'>
+                                    <IoCartOutline className='w-5 h-5'/> Add to Cart
+                                </button>
                             </div>
                         </div>
                      </div>

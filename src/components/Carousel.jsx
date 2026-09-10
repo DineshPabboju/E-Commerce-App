@@ -1,32 +1,73 @@
 import React, { useEffect } from 'react'
-import {getData } from '../context/DataContext'
+import { getData } from '../context/DataContext'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import Category from './Category';
+import { useNavigate } from 'react-router-dom';
 
 const Carousel = () => {
     const { data, fetchAllProducts } = getData()
-    console.log(data);
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchAllProducts()
     }, [])
 
     const SamplePrevArrow = (props) => {
-        const {className, style, onClick} = props;
+        const { className, style, onClick } = props;
         return (
-            <div onClick={onClick} className={`arrow ${className}`} style={{zIndex:3}}>
-                <AiOutlineArrowLeft className='arrows' style={{...style, display: "block", borderRadius:"50px", background:"#f53347" , color:"white" , position:"absolute", padding:"2px", left:"50px"}} />
+            <div onClick={onClick} className={`arrow ${className}`} style={{ zIndex: 10 }}>
+                <div 
+                    style={{
+                        ...style, 
+                        display: "flex", 
+                        alignItems: "center", 
+                        justifyContent: "center",
+                        width: "42px", 
+                        height: "42px", 
+                        borderRadius: "50%", 
+                        background: "#ffffff", 
+                        border: "1px solid #e9d5ff",
+                        color: "#6d28d9", 
+                        position: "absolute", 
+                        left: "30px",
+                        boxShadow: "0 4px 14px rgba(109, 40, 217, 0.12)",
+                        cursor: "pointer"
+                    }}
+                    className='hover:bg-purple-50 transition-all'
+                >
+                    <AiOutlineArrowLeft size={18} />
+                </div>
             </div>
         )
     }
     const SampleNextArrow = (props) => {
-        const {className, style, onClick} = props;
+        const { className, style, onClick } = props;
         return (
-            <div onClick={onClick} className={`arrow ${className}`}>
-                <AiOutlineArrowRight className='arrows' style={{...style, display: "block", borderRadius:"50px", background:"#f53347" , color:"white" , position:"absolute", padding:"2px", right:"50px"}} />
+            <div onClick={onClick} className={`arrow ${className}`} style={{ zIndex: 10 }}>
+                <div 
+                    style={{
+                        ...style, 
+                        display: "flex", 
+                        alignItems: "center", 
+                        justifyContent: "center",
+                        width: "42px", 
+                        height: "42px", 
+                        borderRadius: "50%", 
+                        background: "#ffffff", 
+                        border: "1px solid #e9d5ff",
+                        color: "#6d28d9", 
+                        position: "absolute", 
+                        right: "30px",
+                        boxShadow: "0 4px 14px rgba(109, 40, 217, 0.12)",
+                        cursor: "pointer"
+                    }}
+                    className='hover:bg-purple-50 transition-all'
+                >
+                    <AiOutlineArrowRight size={18} />
+                </div>
             </div>
         )
     }
@@ -34,34 +75,55 @@ const Carousel = () => {
     var settings = {
         dots: false,
         autoplay: true,
-        autoplaySpeed:2000,
+        autoplaySpeed: 3000,
         infinite: true,
-        speed: 500,
+        speed: 600,
         slidesToShow: 1,
         slidesToScroll: 1,
-        pauseOnHover:false,
+        pauseOnHover: true,
         nextArrow: <SampleNextArrow to="next" />,
         prevArrow: <SamplePrevArrow to="prev" />,
     };
 
     return (
-        <div>
+        <div className='relative'>
             <Slider {...settings}>
                 {
-                    data?.slice(0,7)?.map((item, index) => {
-                        return <div key={index} className='bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] -z-10'>
-                            <div className='flex flex-col md:flex-row gap-10 justify-center h-[600px] my-20 md:my-0 items-center px-4'>
-                                <div className='md:space-y-6 space-y-3'>
-                                    <h3 className='text-red-500 font-semibold font-sans text-sm'>Powering Your World with the Best in Electronics</h3>
-                                    <h1 className='md:text-4xl text-xl font-bold uppercase line-clamp-2 md:line-clamp-3 md:w-[500px] text-white'>{item.title}</h1>
-                                    <p className='md:w-[500px] line-clamp-3 text-gray-400 pr-7'>{item.description}</p>
-                                    <button className='bg-gradient-to-r from-red-500 to-purple-500 text-white px-3 py-2 rounded-md cursor-pointer mt-2'>Shop Now</button>
-                                </div>
-                                <div>
-                                    <img src={item.image} alt={item.title} className='rounded-full w-[550px] hover:scale-105 transition-all shadow-2xl shadow-red-400'/>
+                    data?.slice(0, 7)?.map((item, index) => {
+                        return (
+                            <div key={index} className='bg-gradient-to-b from-purple-50/40 via-white to-white py-12 md:py-20'>
+                                <div className='max-w-6xl mx-auto flex flex-col-reverse md:flex-row gap-8 md:gap-14 justify-between items-center px-6 md:px-12'>
+                                    <div className='space-y-4 max-w-xl text-center md:text-left'>
+                                        <span className='inline-block text-xs font-semibold uppercase tracking-wider text-purple-700 bg-purple-100/80 px-3.5 py-1 rounded-full'>
+                                            Featured Innovation
+                                        </span>
+                                        <h1 className='text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 line-clamp-2'>
+                                            {item.title}
+                                        </h1>
+                                        <p className='text-slate-600 text-sm md:text-base line-clamp-3 leading-relaxed'>
+                                            {item.description}
+                                        </p>
+                                        <div className='pt-2'>
+                                            <button 
+                                                onClick={() => navigate(`/products/${item.id}`)}
+                                                className='bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-2.5 rounded-full text-sm shadow-sm hover:shadow-md hover:shadow-purple-500/25 transition-all cursor-pointer'
+                                            >
+                                                Explore Now &rarr;
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className='flex items-center justify-center'>
+                                        <div className='w-64 h-64 md:w-80 md:h-80 bg-white rounded-3xl p-6 border border-purple-100 shadow-[0_10px_35px_rgba(124,58,237,0.08)] flex items-center justify-center hover:scale-105 transition-transform duration-300'>
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.title} 
+                                                className='max-h-full max-w-full object-contain'
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )
                     })
                 }              
             </Slider>

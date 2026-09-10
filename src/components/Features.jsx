@@ -10,15 +10,17 @@ const features = [
 const Features = () => {
 
   return (
-    <div className='bg-gray-100 py-8 px-4 sm:px-6 lg:px-8'>
-      <div className='max-w-7xl mx-auto'>
-        <div className='grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8'>
+    <div className='bg-white border-b border-purple-100/60 py-10 px-4 sm:px-6 lg:px-8'>
+      <div className='max-w-6xl mx-auto'>
+        <div className='grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6'>
             {features.map((feature, index)=> {
-               return <div key={index} className='flex items-center justify-center text-center sm:text-left'>
-                    <feature.icon className='flex-shrink-0 h-10 w-10 text-gray-600' aria-hidden="true" />
+               return <div key={index} className='flex items-center p-4 rounded-2xl hover:bg-purple-50/50 transition-colors border border-transparent hover:border-purple-100/60'>
+                    <div className='w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center flex-shrink-0 text-purple-600'>
+                        <feature.icon className='h-5 w-5' aria-hidden="true" />
+                    </div>
                     <div className='ml-4'>
-                        <p className='text-base font-medium text-gray-900'>{feature.text}</p>
-                        <p className='mt-1 text-sm text-gray-500'>{feature.subtext}</p>
+                        <p className='text-sm font-semibold text-slate-900'>{feature.text}</p>
+                        <p className='mt-0.5 text-xs text-slate-500'>{feature.subtext}</p>
                     </div>
                 </div>
             })}

@@ -68,38 +68,46 @@ const CategoryProduct = () => {
 
   if (error) {
     return (
-      <div className='max-w-6xl mx-auto mt-10 mb-10 px-4'>
-        <button onClick={() => navigate('/')} className='bg-gray-800 mb-5 text-white px-3 py-1 rounded-md cursor-pointer flex gap-1 items-center'>
-          <ChevronLeft /> Back
+      <div className='max-w-6xl mx-auto mt-8 mb-16 px-4'>
+        <button onClick={() => navigate('/')} className='bg-white hover:bg-purple-50 text-purple-700 border border-purple-200 px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer flex gap-1.5 items-center transition-all shadow-2xs mb-6'>
+          <ChevronLeft size={16} /> Back to Store
         </button>
-        <div className='text-center text-red-500 font-semibold'>{error}</div>
+        <div className='text-center text-purple-700 bg-purple-50 border border-purple-200 p-4 rounded-2xl font-medium'>{error}</div>
       </div>
     )
   }
 
   return (
-    <div>
-      {
-        searchData.length > 0 ? (
-          <div className='max-w-6xl mx-auto mt-10 mb-10 px-4'>
-             <button onClick={()=>navigate('/')} className='bg-gray-800 mb-5 text-white px-3 py-1 rounded-md cursor-pointer flex gap-1 items-center'><ChevronLeft/> Back</button>
-             {
-              searchData.map((product, index) =>{
-                return <ProductListView key={index} product={product}/>
-              })
-             }
-          </div>
-        ) : (
-          <div className='max-w-6xl mx-auto mt-10 mb-10 px-4'>
-            <button onClick={() => navigate('/')} className='bg-gray-800 mb-5 text-white px-3 py-1 rounded-md cursor-pointer flex gap-1 items-center'>
-              <ChevronLeft /> Back
+    <div className='min-h-screen bg-white'>
+      <div className='max-w-6xl mx-auto mt-6 mb-16 px-4'>
+        <div className='flex items-center justify-between border-b border-purple-100 pb-5 mb-6'>
+          <div>
+            <button onClick={()=>navigate('/')} className='bg-white hover:bg-purple-50 text-purple-700 border border-purple-200 px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer flex gap-1.5 items-center transition-all shadow-2xs mb-3'>
+              <ChevronLeft size={16}/> Back
             </button>
-            <div className='text-center text-gray-500 font-semibold'>
-              No products found in this category.
-            </div>
+            <h1 className='text-2xl md:text-3xl font-bold capitalize text-slate-900'>{category}</h1>
+            <p className='text-xs text-slate-500 mt-0.5'>{searchData.length} items found</p>
           </div>
-        )
-      }
+        </div>
+
+        {
+          searchData.length > 0 ? (
+            <div className='space-y-4'>
+               {
+                searchData.map((product, index) =>{
+                  return <ProductListView key={index} product={product}/>
+                })
+               }
+            </div>
+          ) : (
+            <div className='text-center py-16 bg-purple-50/20 border border-purple-100 rounded-3xl p-8'>
+              <p className='text-slate-500 font-medium text-sm'>
+                No products found in this category.
+              </p>
+            </div>
+          )
+        }
+      </div>
     </div>
   )
 }

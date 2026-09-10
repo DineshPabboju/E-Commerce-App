@@ -97,14 +97,35 @@ const Products = () => {
   if (error) {
     return (
       <div className='max-w-6xl mx-auto mt-10 mb-10 px-4'>
-        <div className='text-center text-red-500 font-semibold'>{error}</div>
+        <div className='text-center text-purple-700 bg-purple-50 border border-purple-200 p-4 rounded-2xl font-medium'>{error}</div>
       </div>
     );
   }
 
   return (
-    <div>
-      <div className='max-w-6xl mx-auto px-4 mb-10'>
+    <div className='bg-white min-h-screen'>
+      <div className='max-w-6xl mx-auto px-4 mb-16 pt-6'>
+        <div className='border-b border-purple-100 pb-5 mb-6 flex flex-col sm:flex-row justify-between sm:items-end gap-3'>
+          <div>
+            <h1 className='text-2xl md:text-3xl font-bold tracking-tight text-slate-900'>Explore Collection</h1>
+            <p className='text-xs sm:text-sm text-slate-500 mt-1'>Showing {filteredAndSortedData.length} curated products</p>
+          </div>
+          <div className='flex items-center gap-2 self-end sm:self-auto'>
+            <label className='text-xs text-slate-500 font-medium'>Sort:</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className='px-3 py-1.5 text-xs border border-purple-200 rounded-xl bg-white text-slate-800 focus:outline-none focus:border-purple-500 shadow-2xs'
+            >
+              <option value='default'>Featured</option>
+              <option value='price-asc'>Price: Low to High</option>
+              <option value='price-desc'>Price: High to Low</option>
+              <option value='name-asc'>Name: A to Z</option>
+              <option value='name-desc'>Name: Z to A</option>
+            </select>
+          </div>
+        </div>
+
         <MobileFilter
           openFilter={openFilter}
           setOpenFilter={setOpenFilter}
@@ -134,24 +155,9 @@ const Products = () => {
             handleBrandChange={handleBrandChange}
           />
           <div className='flex-1'>
-            {/* Sort Options */}
-            <div className='flex justify-end mb-4'>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className='p-2 border rounded-md bg-white'
-              >
-                <option value='default'>Default</option>
-                <option value='price-asc'>Price: Low to High</option>
-                <option value='price-desc'>Price: High to Low</option>
-                <option value='name-asc'>Name: A to Z</option>
-                <option value='name-desc'>Name: Z to A</option>
-              </select>
-            </div>
-
             {filteredAndSortedData.length > 0 ? (
-              <div className='flex flex-col justify-center items-center'>
-                <div className='grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-7 mt-10'>
+              <div>
+                <div className='grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5'>
                   {filteredAndSortedData
                     .slice(page * 8 - 8, page * 8)
                     .map((product, index) => (
@@ -165,11 +171,17 @@ const Products = () => {
                 />
               </div>
             ) : (
-              <div className='flex flex-col items-center justify-center md:h-[600px] md:w-[900px] mt-10'>
-                <Lottie animationData={notfound} className='w-[500px]' />
-                <p className='text-gray-500 mt-4'>
+              <div className='flex flex-col items-center justify-center min-h-[400px] mt-6 bg-purple-50/20 rounded-3xl border border-purple-100 p-8'>
+                <Lottie animationData={notfound} className='w-64 max-w-full' />
+                <p className='text-slate-600 font-medium text-sm mt-4'>
                   No products found matching your criteria
                 </p>
+                <button 
+                  onClick={() => { setSearch(''); setCategory('All'); setBrand('All'); setPriceRange([0, 5000]); }}
+                  className='mt-3 text-xs text-purple-700 bg-white border border-purple-200 px-4 py-1.5 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-all'
+                >
+                  Clear Filters
+                </button>
               </div>
             )}
           </div>

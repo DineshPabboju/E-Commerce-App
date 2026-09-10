@@ -3,46 +3,73 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-20">
-      <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-8">
-        <h1 className="text-4xl font-bold  text-center">About Zaptro</h1>
-
-        <p className="text-gray-700 text-lg">
-          Welcome to <span className="font-semibold text-red-600">Zaptro</span>, your one-stop destination for the latest and greatest in electronics. From cutting-edge gadgets to must-have accessories, we’re here to power up your tech life with premium products and unbeatable service.
-        </p>
-
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-red-600">Our Mission</h2>
-          <p className="text-gray-700 text-base">
-            At Zaptro, our mission is to make innovative technology accessible to everyone. We’re passionate about connecting people with the tools and tech they need to thrive in a digital world — all at competitive prices and delivered with speed and care.
+    <div className="min-h-screen bg-slate-50/40 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto bg-white border border-purple-100/90 rounded-3xl p-8 sm:p-14 shadow-[0_4px_25px_rgba(124,58,237,0.04)] space-y-10">
+        <div className="text-center space-y-3">
+          <span className="text-xs font-semibold uppercase tracking-wider text-purple-700 bg-purple-50 border border-purple-200 px-3.5 py-1 rounded-full">
+            Our Story
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">About Pegasus</h1>
+          <p className="text-slate-600 text-base max-w-2xl mx-auto leading-relaxed pt-2">
+            Welcome to <span className="font-semibold text-purple-700">Pegasus</span>, where minimalist design meets cutting-edge innovation. We craft and curate premium technology essentials designed to bring clarity, power, and elegance into your everyday life.
           </p>
         </div>
 
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-red-600">Why Choose Zaptro?</h2>
-          <ul className="list-disc pl-6 text-gray-700 space-y-2">
-            <li>Top-quality electronic products from trusted brands</li>
-            <li>Lightning-fast and secure shipping</li>
-            <li>Reliable customer support, always ready to help</li>
-            <li>Easy returns and hassle-free shopping experience</li>
-          </ul>
-        </div>
-
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-red-600">Our Vision</h2>
-          <p className="text-gray-700 text-base">
-            We envision a future where technology elevates everyday life. At Zaptro, we’re committed to staying ahead of the curve, offering cutting-edge solutions that are both practical and affordable.
+        <div className="space-y-3 border-t border-purple-50 pt-8">
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2.5">
+            <span className="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+            Our Mission
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed pl-4">
+            At Pegasus, our purpose is to make refined, forward-thinking technology intuitive and accessible. We eliminate unnecessary clutter and noise, bringing you timeless devices and lifestyle gear that perform flawlessly and inspire your workspace.
           </p>
         </div>
 
-        <div className="text-center mt-10">
-          <h3 className="text-xl font-semibold text-red-600 mb-2">Join the Zaptro Family</h3>
-          <p className="text-gray-700 mb-4">
-            Whether you’re a tech enthusiast, a professional, or just looking for something cool and functional — Zaptro has something for everyone.
+        <div className="space-y-4 border-t border-purple-50 pt-8">
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2.5">
+            <span className="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+            Why Choose Pegasus?
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pl-4 pt-2">
+            <div className="p-4 rounded-2xl bg-purple-50/30 border border-purple-100/60">
+              <h3 className="font-semibold text-slate-900 text-sm mb-1">Curated Excellence</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">Precision-engineered electronics evaluated against the highest durability benchmarks.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-purple-50/30 border border-purple-100/60">
+              <h3 className="font-semibold text-slate-900 text-sm mb-1">Express Delivery</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">Swift, carbon-neutral shipping with transparent tracking from doorstep to destination.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-purple-50/30 border border-purple-100/60">
+              <h3 className="font-semibold text-slate-900 text-sm mb-1">Dedicated Concierge</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">Attentive, human support available around the clock to assist you with every inquiry.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-purple-50/30 border border-purple-100/60">
+              <h3 className="font-semibold text-slate-900 text-sm mb-1">Risk-Free Guarantee</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">30-day effortless returns with zero questions asked and instant refunds.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-3 border-t border-purple-50 pt-8">
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2.5">
+            <span className="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+            Our Vision
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed pl-4">
+            We envision a connected lifestyle where tech is not an overwhelming distraction, but a seamless extension of human creativity. Every product carrying the Pegasus mark is balanced between form, function, and aesthetic minimalism.
           </p>
-         <Link to={'/products'}><button className="bg-red-600 text-white px-6 py-2 rounded-xl hover:bg-red-700 transition duration-300">
-            Start Shopping
-          </button></Link> 
+        </div>
+
+        <div className="text-center pt-8 border-t border-purple-50">
+          <h3 className="text-xl font-semibold text-slate-900 mb-2">Join the Pegasus Experience</h3>
+          <p className="text-slate-500 text-sm mb-6 max-w-md mx-auto">
+            Whether you are upgrading your setup or seeking thoughtful gear, find your next essential here.
+          </p>
+          <Link to={'/products'}>
+            <button className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-8 py-3 rounded-full shadow-sm hover:shadow-purple-500/25 transition-all cursor-pointer">
+              Explore Collection &rarr;
+            </button>
+          </Link> 
         </div>
       </div>
     </div>

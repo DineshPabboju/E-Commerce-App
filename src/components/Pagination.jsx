@@ -20,29 +20,43 @@ const getPages = (current, total) =>{
 
 const Pagination = ({page, pageHandler, dynamicPage}) => {
   return (
-    <div className='mt-10 space-x-4'>
+    <div className='mt-12 mb-6 flex items-center justify-center gap-2'>
         <button 
-        disabled={page===1} 
-        className={`${page === 1 ? "bg-red-400":"bg-red-500"} text-white px-3 py-1 rounded-md cursor-pointer`}
-        onClick={()=>pageHandler(page - 1)}
-        >Prev</button>
-        {
-            getPages(page, dynamicPage)?.map((item, index) =>{
-                return (
-                    <span key={index} 
-                    onClick={()=> typeof item === "number" && pageHandler(item)}
-                    className={`cursor-pointer ${item === page ? "font-bold text-red-600": "text-black"}`}
-                    >
-                        {item}
-                    </span>
-                )
-            })
-        }
+          disabled={page===1} 
+          className='bg-white border border-purple-200 text-purple-700 hover:bg-purple-600 hover:text-white disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-purple-700 px-4 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-2xs cursor-pointer disabled:cursor-not-allowed'
+          onClick={()=>pageHandler(page - 1)}
+        >
+          &larr; Prev
+        </button>
+
+        <div className='flex items-center gap-1.5'>
+          {
+              getPages(page, dynamicPage)?.map((item, index) =>{
+                  return (
+                      <span key={index} 
+                        onClick={()=> typeof item === "number" && pageHandler(item)}
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs transition-all ${
+                          typeof item === "number" ? 'cursor-pointer' : 'cursor-default'
+                        } ${
+                          item === page 
+                            ? "bg-purple-600 text-white shadow-xs font-bold" 
+                            : "text-slate-600 hover:text-purple-600 hover:bg-purple-50 font-medium"
+                        }`}
+                      >
+                          {item}
+                      </span>
+                  )
+              })
+          }
+        </div>
+
         <button 
-        disabled={page===dynamicPage} 
-        className={`${page === dynamicPage ? "bg-red-400":"bg-red-500"} text-white px-3 py-1 rounded-md cursor-pointer`}
-        onClick={()=>pageHandler(page + 1)}
-        >Next</button>
+          disabled={page===dynamicPage} 
+          className='bg-white border border-purple-200 text-purple-700 hover:bg-purple-600 hover:text-white disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-purple-700 px-4 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-2xs cursor-pointer disabled:cursor-not-allowed'
+          onClick={()=>pageHandler(page + 1)}
+        >
+          Next &rarr;
+        </button>
     </div>
   )
 }

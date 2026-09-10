@@ -1,15 +1,35 @@
 import React from 'react'
 import banner from '../assets/banner1.jpg'
+import { useNavigate } from 'react-router-dom'
 
 const MidBanner = () => {
+  const navigate = useNavigate()
+
   return (
-    <div className='bg-gray-100 md:py-24'>
-      <div className='relative max-w-7xl mx-auto md:rounded-2xl pt-28 bg-cover bg-center h-[550px] md:h-[600px] ' style={{backgroundImage: `url(${banner})`, backgroundPosition:'center', backgroundAttachment: 'fixed'}}>
-        <div className='absolute inset-0 bg-black/60 md:rounded-2xl bg-opacity-50 flex items-center justify-center'>
-            <div className='text-center text-white px-4'>
-                <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold mb-4'>Next-Gen Electronics at Your Fingertips</h1>
-                <p className='text-lg md:text-xl mb-6'>Discover the latest tech innovations with unbeatable prices and free shipping on all orders.</p>
-                <button className='bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg transition duration-300'>Shop Now</button>
+    <div className='bg-white py-14 px-4 sm:px-6 lg:px-8'>
+      <div 
+        className='relative max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-xl border border-purple-100/80 h-[480px] md:h-[520px] bg-cover bg-center' 
+        style={{backgroundImage: `url(${banner})`, backgroundPosition:'center', backgroundAttachment: 'fixed'}}
+      >
+        <div className='absolute inset-0 bg-gradient-to-r from-slate-950/85 via-purple-950/75 to-slate-950/85 flex items-center justify-center'>
+            <div className='text-center text-white px-6 max-w-3xl space-y-5'>
+                <span className='inline-block text-xs font-semibold uppercase tracking-widest text-purple-300 bg-purple-900/60 border border-purple-400/30 px-3.5 py-1 rounded-full'>
+                  Pegasus Experience
+                </span>
+                <h1 className='text-3xl md:text-5xl font-bold tracking-tight text-white'>
+                  Next-Gen Technology Crafted for You
+                </h1>
+                <p className='text-sm md:text-base text-purple-100/80 max-w-xl mx-auto font-light leading-relaxed'>
+                  Discover curated minimalist electronics and lifestyle gear with exceptional quality and complimentary fast shipping.
+                </p>
+                <div className='pt-2'>
+                  <button 
+                    onClick={() => navigate('/products')} 
+                    className='bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-full shadow-md hover:shadow-purple-500/30 transition-all duration-300 cursor-pointer text-sm'
+                  >
+                    Explore Collection &rarr;
+                  </button>
+                </div>
             </div>
         </div>
       </div>
