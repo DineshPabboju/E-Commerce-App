@@ -116,8 +116,8 @@ Ensure you have the following installed on your machine:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ecommerce-app.git
-cd ecommerce-app/ecommerce-app
+git clone https://github.com/DineshPabboju/E-Commerce-App.git
+cd E-Commerce-App
 ```
 
 ### 2. Install Dependencies
@@ -128,7 +128,7 @@ npm install
 
 ### 3. Setup Environment Variables
 
-Create a `.env` file in the root of the `ecommerce-app` directory:
+Create a `.env` file in the root directory:
 
 ```env
 VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
